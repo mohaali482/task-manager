@@ -26,5 +26,6 @@ class TaskListCreateAPIView(generics.ListCreateAPIView):
 
 class TaskUpdateView(generics.UpdateAPIView):
     queryset = Task.objects.all()
+    permission_classes = [permissions.IsAuthenticated, TaskOwnerOrAdmin]
     serializer_class = TaskUpdateSerializer
     http_method_names = ["patch"]
