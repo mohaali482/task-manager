@@ -16,7 +16,6 @@ inflection==0.5.1
 kombu==5.4.2
 packaging==24.2
 prompt_toolkit==3.0.48
-psycopg==3.2.3
 PyJWT==2.10.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
@@ -30,3 +29,6 @@ tzdata==2024.2
 uritemplate==4.1.1
 vine==5.1.0
 wcwidth==0.2.13
+
+gunicorn
+psycopg2-binary
