@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_yasg',
     'django_filters',
 
     'tasks',
@@ -162,3 +163,13 @@ REST_FRAMEWORK = {
 }
 
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
