@@ -1,0 +1,44 @@
+version: "3.9"
+   
+services:
+  postgres_db:
+    image: postgres
+    restart: always
+    command: -p 5432
+    env_file:
+      - src/.env
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  task_manager:
+    depends_on:
+      - postgres_db
+    build:
+      context: .
+    volumes:
+      - static:/static
+      - media:/media
+    ports:
+      - "8080:8080"
+    env_file:
+      - src/.env
+
+  nginx:
+    depends_on:
+      - task_manager
+    build:
+      context: ./nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - static:/static
+      - media:/media
+
+volumes:
+  postgres_data:
+  static:
+  media:
